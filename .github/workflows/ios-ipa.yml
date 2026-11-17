@@ -1,0 +1,131 @@
+
+name: Build DeliverNote iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/ios-ipa.yml'
+      - 'index.html'
+      - 'app.js'
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Prepare Web App
+        run: |
+          mkdir -p WebApp Sources
+
+          cp index.html WebApp/
+          cp app.js WebApp/
+
+          [ ! -f icon-192.png ] || cp icon-192.png WebApp/
+          [ ! -f icon-512.png ] || cp icon-512.png WebApp/
+          [ ! -f manifest.webmanifest ] || cp manifest.webmanifest WebApp/
+          [ ! -f sw.js ] || cp sw.js WebApp/
+
+      - name: Create Xcode Project
+        run: |
+          cat > project.yml <<'EOF'
+          name: DeliverNote
+          options:
+            bundleIdPrefix: com.tinwinko
+            deploymentTarget:
+              iOS: "15.0"
+          targets:
+            DeliverNote:
+              type: application
+              platform: iOS
+              sources:
+                - path: Sources
+                - path: WebApp
+                  buildPhase: resources
+              settings:
+                base:
+                  PRODUCT_BUNDLE_IDENTIFIER: com.tinwinko.delivernote
+                  PRODUCT_NAME: DeliverNote
+                  GENERATE_INFOPLIST_FILE: YES
+                  INFOPLIST_KEY_CFBundleDisplayName: DeliverNote
+                  SWIFT_VERSION: "5.0"
+                  TARGETED_DEVICE_FAMILY: "1,2"
+          EOF
+
+          cat > Sources/ContentView.swift <<'EOF'
+          import SwiftUI
+          import WebKit
+
+          struct ContentView: View {
+              var body: some View {
+                  WebAppView()
+                      .ignoresSafeArea()
+              }
+          }
+
+          struct WebAppView: UIViewRepresentable {
+              func makeUIView(context: Context) -> WKWebView {
+                  let webView = WKWebView()
+                  webView.allowsBackForwardNavigationGestures = true
+
+                  if let url = Bundle.main.url(
+                      forResource: "index",
+                      withExtension: "html",
+                      subdirectory: "WebApp"
+                  ) {
+                      webView.loadFileURL(
+                          url,
+                          allowingReadAccessTo: url.deletingLastPathComponent()
+                      )
+                  }
+
+                  return webView
+              }
+
+              func updateUIView(_ webView: WKWebView, context: Context) {}
+          }
+
+          @main
+          struct DeliverNoteApp: App {
+              var body: some Scene {
+                  WindowGroup {
+                      ContentView()
+                  }
+              }
+          }
+          EOF
+
+          xcodegen generate
+
+      - name: Build iOS App
+        run: |
+          xcodebuild \
+            -project DeliverNote.xcodeproj \
+            -scheme DeliverNote \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package IPA
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/DeliverNote.app Payload/
+          zip -r DeliverNote.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeliverNote-IPA
+          path: DeliverNote.ipa
+          if-no-files-found: error
+          retention-days: 7
