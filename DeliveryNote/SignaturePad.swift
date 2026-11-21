@@ -22,7 +22,7 @@ struct SignaturePad: View {
             .gesture(DragGesture(minimumDistance:0)
                 .onChanged { v in current.append(v.location) }
                 .onEnded { _ in
-                    let pts=current.map { Stroke.Point(x:$0.x,y:$0.y) }
+                    let pts=current.map { Point(x:$0.x,y:$0.y) }
                     if let first=pts.first { strokes.append(Stroke(points: pts.count == 1 ? [first,first] : pts)) }
                     current=[]
                 })
