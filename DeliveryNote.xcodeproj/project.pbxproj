@@ -1,0 +1,33 @@
+// !$*UTF8*$!
+{
+ archiveVersion = 1; classes = {}; objectVersion = 56;
+ objects = {
+  A10000000000000000000001 = {isa = PBXProject; attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600;}; buildConfigurationList = A10000000000000000000020; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base,); mainGroup = A10000000000000000000002; productRefGroup = A10000000000000000000003; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000010,);};
+  A10000000000000000000002 = {isa = PBXGroup; children = (A10000000000000000000004,A10000000000000000000003,); sourceTree = "<group>";};
+  A10000000000000000000003 = {isa = PBXGroup; children = (A10000000000000000000011,); name = Products; sourceTree = "<group>";};
+  A10000000000000000000004 = {isa = PBXGroup; children = (A10000000000000000000005,A10000000000000000000006,A10000000000000000000007,A10000000000000000000008,A10000000000000000000009,A1000000000000000000000A,); path = DeliveryNote; sourceTree = "<group>";};
+  A10000000000000000000005 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryNoteApp.swift; sourceTree = "<group>";};
+  A10000000000000000000006 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>";};
+  A10000000000000000000007 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaturePad.swift; sourceTree = "<group>";};
+  A10000000000000000000008 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>";};
+  A10000000000000000000009 = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>";};
+  A1000000000000000000000A = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>";};
+  A10000000000000000000011 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryNote.app; sourceTree = BUILT_PRODUCTS_DIR;};
+  A10000000000000000000012 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000031,A10000000000000000000032,A10000000000000000000033,A10000000000000000000034,); runOnlyForDeploymentPostprocessing = 0;};
+  A10000000000000000000013 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
+  A10000000000000000000014 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000035,); runOnlyForDeploymentPostprocessing = 0;};
+  A10000000000000000000015 = {isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000021; buildPhases = (A10000000000000000000012,A10000000000000000000013,A10000000000000000000014,); buildRules = (); dependencies = (); name = DeliveryNote; productName = DeliveryNote; productReference = A10000000000000000000011; productType = "com.apple.product-type.application";};
+  A10000000000000000000020 = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000022,A10000000000000000000023,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+  A10000000000000000000021 = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000024,A10000000000000000000025,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+  A10000000000000000000022 = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 15.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Debug;};
+  A10000000000000000000023 = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 15.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Release;};
+  A10000000000000000000024 = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGNING_ALLOWED = NO; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = DeliveryNote/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = com.tinwinko.delivernote; PRODUCT_NAME = DeliveryNote; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2";}; name = Debug;};
+  A10000000000000000000025 = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGNING_ALLOWED = NO; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = DeliveryNote/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = com.tinwinko.delivernote; PRODUCT_NAME = DeliveryNote; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2";}; name = Release;};
+  A10000000000000000000031 = {isa = PBXBuildFile; fileRef = A10000000000000000000005;};
+  A10000000000000000000032 = {isa = PBXBuildFile; fileRef = A10000000000000000000006;};
+  A10000000000000000000033 = {isa = PBXBuildFile; fileRef = A10000000000000000000007;};
+  A10000000000000000000034 = {isa = PBXBuildFile; fileRef = A10000000000000000000008;};
+  A10000000000000000000035 = {isa = PBXBuildFile; fileRef = A10000000000000000000009;};
+ };
+ rootObject = A10000000000000000000001;
+}
